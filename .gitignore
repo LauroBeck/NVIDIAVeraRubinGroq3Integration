@@ -1,0 +1,4 @@
+venv/
+*.o
+stargate_v2
+*.class
