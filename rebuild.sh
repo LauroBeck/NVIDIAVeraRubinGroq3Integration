@@ -1,26 +1,17 @@
 #!/bin/bash
-echo "--- COMMENCING 2026 BUILD: MARCH 18 REVISION (AUTO-DETECT) ---"
+echo "--- STARGATE CLUSTER: DEPLOYING REBOUND v2.0.3-ALPHA ---"
+source venv/bin/activate
 
-# 1. Compile C++
-g++ -O3 -fopenmp stargate_v2.cpp -o stargate_v2
-if [ $? -eq 0 ]; then 
-    echo "[1/2] C++ Matrix Engine Compiled."
-else 
-    echo "[!] C++ Build Failed. Ensure 'libomp-dev' is installed."
-    exit 1
-fi
+# 1. C++ Engine (Vera Optimized)
+g++ -O3 rebound.cpp -o rebound_engine
+./rebound_engine
 
-# 2. Compile Java (Auto-detecting version, enabling Vector API)
-javac --add-modules jdk.incubator.vector MarketSentinel.java
-if [ $? -eq 0 ]; then 
-    echo "[2/2] Java Sentinel Compiled."
-else 
-    echo "[!] Java Build Failed."
-    exit 1
-fi
+# 2. Java Risk Gate
+javac ReboundGate.java
+java ReboundGate
 
-# 3. Execute
-./stargate_v2
-java --add-modules jdk.incubator.vector MarketSentinel
+# 3. Python Signal
+python3 rebound.py
 
-echo "--- Build Mission 2026 Synchronized ---"
+echo "--- DEPLOYMENT COMPLETE: MARCH 18 CLOSING BELL SYNC ---"
+echo "--- Repository: https://github.com/LauroBeck/NVIDIAVeraRubinGroq3Integration ---"
